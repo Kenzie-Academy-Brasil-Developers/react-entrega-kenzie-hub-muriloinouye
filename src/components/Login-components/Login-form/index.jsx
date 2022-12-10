@@ -26,7 +26,7 @@ export const LoginForm = () => {
     axios
       .post("https://kenziehub.herokuapp.com/sessions", { ...data })
       .then((response) => {
-        console.log(response.statusText);
+        console.log(response);
         window.localStorage.clear();
         window.localStorage.setItem("authToken", response.data.token);
         if (response.statusText === "OK") {
