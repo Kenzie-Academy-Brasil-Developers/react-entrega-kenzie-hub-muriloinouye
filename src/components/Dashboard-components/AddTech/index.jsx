@@ -52,7 +52,7 @@ export const AddTech = ({ token, fetchUser }) => {
   }
 
   return (
-    <div className={`${styles.addContainer} container`}>
+    <div className={`${styles.addContainer}`}>
       <header className={styles.header}>
         <h3 className={styles.headerTitle}>Tecnologias</h3>
         <button onClick={openModal} className={styles.openModal}>
