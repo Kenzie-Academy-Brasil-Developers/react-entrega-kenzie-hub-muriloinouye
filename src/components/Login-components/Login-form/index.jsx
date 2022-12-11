@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
 
+import styles from "./LoginForm.module.css";
+
 export const LoginForm = () => {
   const navigate = useNavigate();
 
@@ -40,19 +42,41 @@ export const LoginForm = () => {
   console.log(errors);
 
   return (
-    <form onSubmit={handleSubmit(formSubmit)}>
-      <header>Login</header>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" {...register("email")} />
-        {errors.email?.message}
-        <label htmlFor="password">Senha</label>
-        <input type="password" id="password" {...register("password")} />
-        <button type="submit">Entrar</button>
+    <form onSubmit={handleSubmit(formSubmit)} className={`${styles.form}`}>
+      <header className={styles.formHeader}>Login</header>
+      <div className={styles.formDiv}>
+        <label htmlFor="email" className={`${styles.label} headline`}>
+          Email
+        </label>
+        <input
+          type="text"
+          id="email"
+          {...register("email")}
+          className={styles.input}
+          placeholder="Digite seu email"
+        />
+        <label htmlFor="password" className={`${styles.label} headline`}>
+          Senha
+        </label>
+        <input
+          type="password"
+          id="password"
+          {...register("password")}
+          className={styles.input}
+          placeholder="Digite sua senha"
+        />
+        <button type="submit" className={styles.buttonSubmit}>
+          Entrar
+        </button>
       </div>
-      <div>
-        <p>Ainda não possui uma conta ?</p>
-        <button onClick={() => navigate("/register")}>Cadastrar-se</button>
+      <div className={styles.unregistedDiv}>
+        <p className={styles.unregistedP}>Ainda não possui uma conta ?</p>
+        <button
+          onClick={() => navigate("/register")}
+          className={styles.registerButton}
+        >
+          Cadastrar-se
+        </button>
       </div>
     </form>
   );
