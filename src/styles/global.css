@@ -12,3 +12,12 @@
   --sucess: #3fe864;
   --negative: #e83f5b;
 }
+
+body {
+  background-color: var(--grey-4);
+}
+
+.container {
+  width: 780px;
+  margin: 0 auto;
+}

@@ -1,0 +1,31 @@
+.cardDiv {
+  width: 732px;
+  height: 49px;
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: var(--grey-4);
+}
+
+.title {
+  color: var(--grey-0);
+}
+
+.rightDiv {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.status {
+  color: var(--grey-1);
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: var(--grey-0);
+}

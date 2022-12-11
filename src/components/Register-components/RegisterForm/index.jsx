@@ -7,6 +7,8 @@ import { redirect, useNavigate } from "react-router-dom";
 import styles from "./RegisterForm.module.css";
 
 export const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email invalido"),
     password: yup.string().required("Senha obrigatoria"),
@@ -30,6 +32,9 @@ export const RegisterForm = () => {
       .post("https://kenziehub.herokuapp.com/users", { ...data })
       .then((response) => {
         console.log(response);
+        if (response.statusText === "Created") {
+          navigate("/");
+        }
       })
       .catch((err) => console.log(err));
   }
