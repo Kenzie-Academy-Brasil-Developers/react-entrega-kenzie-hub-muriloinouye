@@ -28,7 +28,8 @@ export const LoginForm = () => {
       .then((response) => {
         console.log(response);
         window.localStorage.clear();
-        window.localStorage.setItem("authToken", response.data.token);
+        window.localStorage.setItem("@Token", response.data.token);
+        window.localStorage.setItem("@Id", response.data.user.id);
         if (response.statusText === "OK") {
           navigate("/dashboard");
         }
