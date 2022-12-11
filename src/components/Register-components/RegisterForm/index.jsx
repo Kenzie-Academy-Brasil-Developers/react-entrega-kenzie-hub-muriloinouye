@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
 import styles from "./RegisterForm.module.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const RegisterForm = () => {
   const navigate = useNavigate();
@@ -33,10 +35,34 @@ export const RegisterForm = () => {
       .then((response) => {
         console.log(response);
         if (response.statusText === "Created") {
-          navigate("/");
+          toast.success("Conta criada com sucesso", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+
+          setTimeout(() => {
+            navigate("/");
+          }, 2500);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error("Ops, algo deu errado", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      });
   }
 
   return (

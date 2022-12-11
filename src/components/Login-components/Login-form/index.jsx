@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./LoginForm.module.css";
 
@@ -24,22 +26,41 @@ export const LoginForm = () => {
   });
 
   function formSubmit(data) {
-    console.log(data);
     axios
       .post("https://kenziehub.herokuapp.com/sessions", { ...data })
       .then((response) => {
-        console.log(response);
         window.localStorage.clear();
         window.localStorage.setItem("@Token", response.data.token);
         window.localStorage.setItem("@Id", response.data.user.id);
         if (response.statusText === "OK") {
-          navigate("/dashboard");
+          toast.success("Login efetuado com sucesso!", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 2600);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        toast.error("Ops, algo deu errado", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      });
   }
-
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(formSubmit)} className={`${styles.form}`}>

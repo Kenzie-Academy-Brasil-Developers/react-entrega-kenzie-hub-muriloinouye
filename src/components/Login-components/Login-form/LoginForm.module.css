@@ -1,6 +1,5 @@
 .form {
   width: 370px;
-  height: 500px;
   margin: 0 auto;
   padding: 42px 22px;
 
@@ -79,4 +78,10 @@
   font-size: 16px;
   font-weight: 500;
   border-radius: 4px;
+}
+
+@media screen and (max-width: 800px) {
+  .form {
+    max-width: 90%;
+  }
 }

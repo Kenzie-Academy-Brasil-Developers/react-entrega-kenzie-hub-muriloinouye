@@ -4,7 +4,7 @@ import style from "./loginHeader.module.css";
 
 export const LoginHeader = () => {
   return (
-    <div className={`container ${style.logoDiv}`}>
+    <div className={`${style.logoDiv}`}>
       <img src={logo} alt="" />
     </div>
   );

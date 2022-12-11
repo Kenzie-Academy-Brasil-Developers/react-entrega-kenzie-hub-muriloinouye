@@ -13,7 +13,7 @@ export const DashHeader = () => {
 
   return (
     <header className={styles.dashHeader}>
-      <div className={`${styles.headerContainer} container`}>
+      <div className={`${styles.headerContainer}`}>
         <img src={logo} alt="" className={styles.logo} />
         <button className={styles.logoutButton} onClick={logout}>
           Sair
