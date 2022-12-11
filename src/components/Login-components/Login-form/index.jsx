@@ -26,11 +26,9 @@ export const LoginForm = () => {
   });
 
   function formSubmit(data) {
-    console.log(data);
     axios
       .post("https://kenziehub.herokuapp.com/sessions", { ...data })
       .then((response) => {
-        console.log(response);
         window.localStorage.clear();
         window.localStorage.setItem("@Token", response.data.token);
         window.localStorage.setItem("@Id", response.data.user.id);
@@ -63,8 +61,6 @@ export const LoginForm = () => {
         });
       });
   }
-
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(formSubmit)} className={`${styles.form}`}>
