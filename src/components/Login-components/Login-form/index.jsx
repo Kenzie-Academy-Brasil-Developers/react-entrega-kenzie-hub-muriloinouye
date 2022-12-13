@@ -7,7 +7,18 @@ import { redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import styles from "./LoginForm.module.css";
+import {
+  Button,
+  ButtonPrimary,
+  Form,
+  FormLogin,
+  FormLoginInputs,
+  FormLoginUnregisted,
+  FormLoginUnregistedP,
+  HeaderFormLogin,
+  Input,
+  Label,
+} from "../../../styles";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -63,42 +74,31 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(formSubmit)} className={`${styles.form}`}>
-      <header className={styles.formHeader}>Login</header>
-      <div className={styles.formDiv}>
-        <label htmlFor="email" className={`${styles.label} headline`}>
-          Email
-        </label>
-        <input
+    <Form onSubmit={handleSubmit(formSubmit)}>
+      <HeaderFormLogin>Login</HeaderFormLogin>
+      <FormLoginInputs>
+        <Label htmlFor="email">Email</Label>
+        <Input
           type="text"
           id="email"
           {...register("email")}
-          className={styles.input}
           placeholder="Digite seu email"
         />
-        <label htmlFor="password" className={`${styles.label} headline`}>
-          Senha
-        </label>
-        <input
+        <Label htmlFor="password">Senha</Label>
+        <Input
           type="password"
           id="password"
           {...register("password")}
-          className={styles.input}
           placeholder="Digite sua senha"
         />
-        <button type="submit" className={styles.buttonSubmit}>
-          Entrar
-        </button>
-      </div>
-      <div className={styles.unregistedDiv}>
-        <p className={styles.unregistedP}>Ainda não possui uma conta ?</p>
-        <button
-          onClick={() => navigate("/register")}
-          className={styles.registerButton}
-        >
-          Cadastrar-se
-        </button>
-      </div>
-    </form>
+        <ButtonPrimary type="submit">Entrar</ButtonPrimary>
+      </FormLoginInputs>
+      <FormLoginUnregisted>
+        <FormLoginUnregistedP>
+          Ainda não Possui uma conta ?
+        </FormLoginUnregistedP>
+        <Button onClick={() => navigate("/register")}>Cadastrar-se</Button>
+      </FormLoginUnregisted>
+    </Form>
   );
 };

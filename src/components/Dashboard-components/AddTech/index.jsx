@@ -7,6 +7,20 @@ import axios from "axios";
 import { GrAdd } from "react-icons/gr";
 
 import styles from "./addTech.module.css";
+import {
+  AddButton,
+  AddContainer,
+  AddForm,
+  AddHeader,
+  Button,
+  ButtonPrimary,
+  ButtonSmaller,
+  Input,
+  Label,
+  LabelModal,
+  ModalHeader,
+  Select,
+} from "../../../styles";
 
 Modal.setAppElement("#root");
 
@@ -52,59 +66,45 @@ export const AddTech = ({ token, fetchUser }) => {
   }
 
   return (
-    <div className={`${styles.addContainer}`}>
-      <header className={styles.header}>
-        <h3 className={styles.headerTitle}>Tecnologias</h3>
-        <button onClick={openModal} className={styles.openModal}>
+    <AddContainer>
+      <AddHeader>
+        <h3>Tecnologias</h3>
+        <AddButton onClick={openModal} className={styles.openModal}>
           +
-        </button>
-      </header>
+        </AddButton>
+      </AddHeader>
       <Modal
         isOpen={modalState}
         onRequestClose={closeModal}
         className={styles.modal}
         overlayClassName={styles.overlay}
       >
-        <header className={styles.modalHeader}>
-          <h2 className={`${styles.headerTitle} title1`}>
-            Cadastrar tecnologia
-          </h2>
-          <button onClick={closeModal} className={styles.closeButton}>
-            X
-          </button>
-        </header>
-        <form onSubmit={handleSubmit(formSubmit)} className={styles.form}>
-          <label htmlFor="title" className={`${styles.label} headline`}>
-            Nome
-          </label>
-          <input
+        <ModalHeader>
+          <h2>Cadastrar tecnologia</h2>
+          <button onClick={closeModal}>X</button>
+        </ModalHeader>
+        <AddForm onSubmit={handleSubmit(formSubmit)}>
+          <LabelModal htmlFor="title">Nome</LabelModal>
+          <Input
             type="text"
             id="title"
             {...register("title")}
             required
             placeholder="Digite o nome"
-            className={styles.input}
           />
-          <label htmlFor="status" className={`${styles.label} headline`}>
-            Selecionar status
-          </label>
-          <select
-            name=""
-            id="status"
-            {...register("status")}
-            className={styles.select}
-          >
+          <LabelModal htmlFor="status">Selecionar status</LabelModal>
+          <Select name="" id="status" {...register("status")}>
             <option value="Iniciante" defaultValue>
               Iniciante
             </option>
             <option value="Intermediario">Intermediario</option>
             <option value="Avançado">Avançado</option>
-          </select>
-          <button type="submit" className={`${styles.submitButton} title1`}>
+          </Select>
+          <ButtonPrimary marginTop="10" type="submit">
             Cadastrar Tecnologia
-          </button>
-        </form>
+          </ButtonPrimary>
+        </AddForm>
       </Modal>
-    </div>
+    </AddContainer>
   );
 };

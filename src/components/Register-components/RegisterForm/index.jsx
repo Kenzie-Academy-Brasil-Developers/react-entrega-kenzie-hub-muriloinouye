@@ -4,9 +4,20 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
-import styles from "./RegisterForm.module.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  ButtonPrimary,
+  Form,
+  FormRegisterHeader,
+  FormRegisterHeaderP,
+  FormRegisterHeaderTitle,
+  FormRegisterInputDiv,
+  Input,
+  Label,
+  Select,
+  Warning,
+} from "../../../styles";
 
 export const RegisterForm = () => {
   const navigate = useNavigate();
@@ -66,92 +77,54 @@ export const RegisterForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(formSubmit)} className={styles.form}>
-      <header className={styles.formHeader}>
-        <h2 className={`${styles.headerTitle} title1`}>Crie sua conta</h2>
-        <p className={`${styles.headerText} headline`}>
-          Rapido e gratis, vamos nessa
-        </p>
-      </header>
-      <div className={styles.inputDiv}>
-        <label htmlFor="" className={styles.label}>
-          Nome
-        </label>
-        <input
+    <Form onSubmit={handleSubmit(formSubmit)}>
+      <FormRegisterHeader>
+        <FormRegisterHeaderTitle>Crie sua conta</FormRegisterHeaderTitle>
+        <FormRegisterHeaderP>Rapido e gratis, vamos nessa</FormRegisterHeaderP>
+      </FormRegisterHeader>
+      <FormRegisterInputDiv>
+        <Label htmlFor="name">Nome</Label>
+        <Input
           type="text"
+          id="name"
           {...register("name")}
-          className={styles.input}
           placeholder="Digite aqui seu nome"
         />
-        {errors.name && (
-          <p className={styles.warning}>{errors.name?.message}</p>
-        )}
+        {errors.name && <Warning>{errors.name?.message}</Warning>}
 
-        <label htmlFor="" className={styles.label}>
-          Email
-        </label>
-        <input
+        <Label htmlFor="email">Email</Label>
+        <Input
           type="email"
+          id="email"
           {...register("email")}
-          className={styles.input}
           placeholder="Digite aqui seu email"
         />
-        {errors.email && (
-          <p className={styles.warning}>{errors.email?.message}</p>
-        )}
+        {errors.email && <Warning>{errors.email?.message}</Warning>}
 
-        <label htmlFor="" className={styles.label}>
-          Senha
-        </label>
-        <input
+        <Label htmlFor="password">Senha</Label>
+        <Input
           type="password"
+          id="password"
           {...register("password")}
-          className={styles.input}
           placeholder="Digite aqui sua senha"
         />
-        {errors.password && (
-          <p className={styles.warning}>{errors.password?.message}</p>
-        )}
-        <label htmlFor="" className={styles.label}>
-          Confirmar senha
-        </label>
-        <input
-          type="password"
-          className={styles.input}
-          placeholder="Digite novamente sua senha"
-        />
-        <label htmlFor="" className={styles.label}>
-          Bio
-        </label>
-        <input
-          type="text"
-          {...register("bio")}
-          className={styles.input}
-          placeholder="Fale sobre você"
-        />
-        {errors.bio && <p className={styles.warning}>{errors.bio?.message}</p>}
+        {errors.password && <Warning>{errors.password?.message}</Warning>}
+        <Label htmlFor="">Confirmar senha</Label>
+        <Input type="password" placeholder="Digite novamente sua senha" />
+        <Label htmlFor="">Bio</Label>
+        <Input type="text" {...register("bio")} placeholder="Fale sobre você" />
+        {errors.bio && <Warning>{errors.bio?.message}</Warning>}
 
-        <label htmlFor="" className={styles.label}>
-          Contato
-        </label>
-        <input
+        <Label htmlFor="contact">Contato</Label>
+        <Input
           type="number"
+          id="contact"
           {...register("contact")}
-          className={styles.input}
           placeholder="Opção de contato"
         />
-        {errors.contact && (
-          <p className={styles.warning}>{errors.contact?.message}</p>
-        )}
-        <label htmlFor="" className={styles.label}>
-          Selecionar modulo
-        </label>
-        <select
-          name=""
-          id=""
-          {...register("course_module")}
-          className={styles.select}
-        >
+        {errors.contact && <Warning>{errors.contact?.message}</Warning>}
+        <Label htmlFor="course_module">Selecionar modulo</Label>
+        <Select name="" id="course_module" {...register("course_module")}>
           <option value="Primeiro modulo (Introdução ao Frontend)" defaultValue>
             Primeiro modulo
           </option>
@@ -166,11 +139,9 @@ export const RegisterForm = () => {
             Quinto modulo
           </option>
           <option value="Sexto modulo (Softskills)">Sexto modulo</option>
-        </select>
-        <button type="submit" className={styles.registerButton}>
-          Cadastrar
-        </button>
-      </div>
-    </form>
+        </Select>
+        <ButtonPrimary type="submit">Cadastrar</ButtonPrimary>
+      </FormRegisterInputDiv>
+    </Form>
   );
 };
