@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { GrAdd } from "react-icons/gr";
 
-import styles from "./addTech.module.css";
 import {
   AddButton,
   AddContainer,
@@ -69,15 +68,15 @@ export const AddTech = ({ token, fetchUser }) => {
     <AddContainer>
       <AddHeader>
         <h3>Tecnologias</h3>
-        <AddButton onClick={openModal} className={styles.openModal}>
+        <AddButton onClick={openModal} className="openModal">
           +
         </AddButton>
       </AddHeader>
       <Modal
         isOpen={modalState}
         onRequestClose={closeModal}
-        className={styles.modal}
-        overlayClassName={styles.overlay}
+        className="modal"
+        overlayClassName="overlay"
       >
         <ModalHeader>
           <h2>Cadastrar tecnologia</h2>

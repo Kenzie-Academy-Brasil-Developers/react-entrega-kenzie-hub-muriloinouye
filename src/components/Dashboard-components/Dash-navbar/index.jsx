@@ -1,6 +1,5 @@
 import React from "react";
 import { DashNavbarContainer, StyledDashNavbar } from "../../../styles";
-import styles from "./dashNavbar.module.css";
 
 export const DashNavbar = ({ user }) => {
   return (

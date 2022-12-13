@@ -1,7 +1,6 @@
 import React from "react";
 import { DashListContainer } from "../../../styles";
 import { TechCard } from "../TechCard";
-import styles from "./dashList.module.css";
 
 export const DashList = ({ techs, token, fetchUser }) => {
   return (

@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { CardDiv, CardRightDiv } from "../../../styles";
-import styles from "./techCard.module.css";
 
 export const TechCard = ({ obj, token, fetchUser }) => {
   axios.interceptors.request.use(

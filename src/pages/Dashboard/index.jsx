@@ -6,7 +6,7 @@ import { redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AddTech } from "../../components/Dashboard-components/AddTech";
 
-import styles from "./dashboard.module.css";
+import { DashboardContainer } from "../../styles";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -41,11 +41,11 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <div className={styles.dashboardContainer}>
+    <DashboardContainer>
       <DashHeader />
       <DashNavbar user={user} />
       <AddTech token={token} fetchUser={fetchUser} />
       <DashList techs={techs} token={token} fetchUser={fetchUser} />
-    </div>
+    </DashboardContainer>
   );
 };
