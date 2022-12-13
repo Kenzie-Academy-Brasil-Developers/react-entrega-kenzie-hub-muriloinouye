@@ -1,17 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../Imgs/Logo.svg";
-import styles from "./RegisterHeader.module.css";
+import { ButtonSmaller, StyleRegisterHeader } from "../../../styles";
 
 export const RegisterHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={`${styles.registerHeader}`}>
+    <StyleRegisterHeader>
       <img src={logo} alt="" />
-      <button onClick={() => navigate("/")} className={styles.loginButton}>
-        Voltar
-      </button>
-    </div>
+      <ButtonSmaller onClick={() => navigate("/")}>Voltar</ButtonSmaller>
+    </StyleRegisterHeader>
   );
 };

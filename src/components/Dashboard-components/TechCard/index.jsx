@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { CardDiv, CardRightDiv } from "../../../styles";
 import styles from "./techCard.module.css";
 
 export const TechCard = ({ obj, token, fetchUser }) => {
@@ -25,14 +26,14 @@ export const TechCard = ({ obj, token, fetchUser }) => {
   }
 
   return (
-    <div className={styles.cardDiv}>
-      <h2 className={`${styles.title} title1`}>{obj.title}</h2>
-      <div className={styles.rightDiv}>
-        <p className={`${styles.status} headline`}>{obj.status}</p>
-        <button onClick={() => removeTech()} className={styles.removeButton}>
+    <CardDiv>
+      <h2>{obj.title}</h2>
+      <CardRightDiv>
+        <p>{obj.status}</p>
+        <button onClick={() => removeTech()}>
           <FaRegTrashAlt />
         </button>
-      </div>
-    </div>
+      </CardRightDiv>
+    </CardDiv>
   );
 };
