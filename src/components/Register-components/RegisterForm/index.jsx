@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,8 +18,10 @@ import {
   Select,
   Warning,
 } from "../../../styles";
+import { UserContext } from "../../../contexts/UserContext";
 
 export const RegisterForm = () => {
+  const { registerFetch } = useContext(UserContext);
   const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
@@ -40,40 +42,7 @@ export const RegisterForm = () => {
   });
 
   function formSubmit(data) {
-    console.log(data);
-    axios
-      .post("https://kenziehub.herokuapp.com/users", { ...data })
-      .then((response) => {
-        console.log(response);
-        if (response.statusText === "Created") {
-          toast.success("Conta criada com sucesso", {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-
-          setTimeout(() => {
-            navigate("/");
-          }, 2500);
-        }
-      })
-      .catch((err) => {
-        toast.error("Ops, algo deu errado", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      });
+    registerFetch(data);
   }
 
   return (
