@@ -4,7 +4,7 @@ import { DashListContainer } from "../../../styles";
 import { TechCard } from "../TechCard";
 
 export const DashList = () => {
-  const { techs, token, fetchUser } = useContext(UserContext);
+  const { techs } = useContext(UserContext);
   return (
     <DashListContainer>
       {techs.map((obj, index) => (

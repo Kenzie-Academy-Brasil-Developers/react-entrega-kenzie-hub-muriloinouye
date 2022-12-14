@@ -22,7 +22,6 @@ export const UserProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/dashboard");
-      console.log(fetch);
     } catch (err) {
       console.log(err);
     }
@@ -110,7 +109,6 @@ export const UserProvider = ({ children }) => {
       const fetch = await api.get(`users/${id}`);
       setTechs(fetch.data.techs);
       setUser(fetch.data);
-      console.log(techs, user);
     } catch (err) {
       console.log(err);
     }

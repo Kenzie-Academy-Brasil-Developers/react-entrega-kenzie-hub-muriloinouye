@@ -15,7 +15,6 @@ export const TechProvider = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(fetch);
     } catch (err) {
       console.log(err);
     }

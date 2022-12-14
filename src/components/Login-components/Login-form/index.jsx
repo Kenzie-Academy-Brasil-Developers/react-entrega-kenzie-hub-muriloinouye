@@ -2,16 +2,13 @@ import React, { useContext } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import { redirect, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
   Button,
   ButtonPrimary,
   Form,
-  FormLogin,
   FormLoginInputs,
   FormLoginUnregisted,
   FormLoginUnregistedP,

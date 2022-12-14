@@ -2,9 +2,6 @@ import React, { useContext } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import { redirect, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   ButtonPrimary,
@@ -22,7 +19,6 @@ import { UserContext } from "../../../contexts/UserContext";
 
 export const RegisterForm = () => {
   const { registerFetch } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email invalido"),
