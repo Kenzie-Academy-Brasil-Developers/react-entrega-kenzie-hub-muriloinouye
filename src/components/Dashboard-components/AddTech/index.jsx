@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "react-modal";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { GrAdd } from "react-icons/gr";
 
-import styles from "./addTech.module.css";
 import {
   AddButton,
   AddContainer,
@@ -21,10 +20,14 @@ import {
   ModalHeader,
   Select,
 } from "../../../styles";
+import { UserContext } from "../../../contexts/UserContext";
+import { TechContext } from "../../../contexts/TechContext";
 
 Modal.setAppElement("#root");
 
-export const AddTech = ({ token, fetchUser }) => {
+export const AddTech = () => {
+  const { token, fetchUser } = useContext(UserContext);
+  const { techPost } = useContext(TechContext);
   const [modalState, setModalState] = useState(false);
 
   function openModal() {
@@ -54,30 +57,25 @@ export const AddTech = ({ token, fetchUser }) => {
     resolver: yupResolver(formSchema),
   });
 
-  function formSubmit(data) {
-    console.log(data);
-    axios
-      .post("https://kenziehub.herokuapp.com/users/techs", { ...data })
-      .then((response) => {
-        console.log(response);
-        fetchUser();
-        closeModal();
-      });
+  async function formSubmit(data) {
+    await techPost(data);
+    await fetchUser();
+    closeModal();
   }
 
   return (
     <AddContainer>
       <AddHeader>
         <h3>Tecnologias</h3>
-        <AddButton onClick={openModal} className={styles.openModal}>
+        <AddButton onClick={openModal} className="openModal">
           +
         </AddButton>
       </AddHeader>
       <Modal
         isOpen={modalState}
         onRequestClose={closeModal}
-        className={styles.modal}
-        overlayClassName={styles.overlay}
+        className="modal"
+        overlayClassName="overlay"
       >
         <ModalHeader>
           <h2>Cadastrar tecnologia</h2>

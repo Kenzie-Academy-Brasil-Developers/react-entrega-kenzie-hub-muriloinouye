@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DashList } from "../../components/Dashboard-components/Dash-List";
 import { DashHeader } from "../../components/Dashboard-components/Dash-header";
 import { DashNavbar } from "../../components/Dashboard-components/Dash-navbar";
@@ -6,16 +6,12 @@ import { redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AddTech } from "../../components/Dashboard-components/AddTech";
 
-import styles from "./dashboard.module.css";
+import { DashboardContainer } from "../../styles";
+import { UserContext } from "../../contexts/UserContext";
 
 export const Dashboard = () => {
+  const { fetchUser, id, token, user } = useContext(UserContext);
   const navigate = useNavigate();
-
-  const token = window.localStorage.getItem("@Token");
-  const id = window.localStorage.getItem("@Id");
-
-  const [techs, setTechs] = useState([]);
-  const [user, setUser] = useState([]);
 
   function verifyLogin() {
     if (token === null || id === null) {
@@ -23,29 +19,17 @@ export const Dashboard = () => {
     }
   }
 
-  function fetchUser() {
-    axios
-      .get(`https://kenziehub.herokuapp.com/users/${id}`)
-      .then((response) => {
-        console.log(response);
-        setTechs(response.data.techs);
-        setUser(response.data);
-      })
-      .catch((err) => console.log(err));
-  }
-  console.log(user);
-
   useEffect(() => {
     verifyLogin();
     fetchUser();
   }, []);
 
   return (
-    <div className={styles.dashboardContainer}>
+    <DashboardContainer>
       <DashHeader />
-      <DashNavbar user={user} />
-      <AddTech token={token} fetchUser={fetchUser} />
-      <DashList techs={techs} token={token} fetchUser={fetchUser} />
-    </div>
+      <DashNavbar />
+      <AddTech />
+      <DashList />
+    </DashboardContainer>
   );
 };

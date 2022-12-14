@@ -324,3 +324,27 @@ export const CardRightDiv = styled.div`
     color: var(--grey-0);
   }
 `;
+
+export const DashboardContainer = styled.div`
+  width: 100%;
+  min-height: 100vh;
+`;
+
+export const LoginContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+`;
+
+export const RegisterContainer = styled.div`
+  min-height: 100vh;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+`;

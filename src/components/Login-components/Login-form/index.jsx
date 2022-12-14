@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,8 +19,10 @@ import {
   Input,
   Label,
 } from "../../../styles";
+import { UserContext } from "../../../contexts/UserContext";
 
 export const LoginForm = () => {
+  const { loginFetch } = useContext(UserContext);
   const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
@@ -28,49 +30,12 @@ export const LoginForm = () => {
     password: yup.string().required("Senha obrigatoria"),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     resolver: yupResolver(formSchema),
   });
 
-  function formSubmit(data) {
-    axios
-      .post("https://kenziehub.herokuapp.com/sessions", { ...data })
-      .then((response) => {
-        window.localStorage.clear();
-        window.localStorage.setItem("@Token", response.data.token);
-        window.localStorage.setItem("@Id", response.data.user.id);
-        if (response.statusText === "OK") {
-          toast.success("Login efetuado com sucesso!", {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-          setTimeout(() => {
-            navigate("/dashboard");
-          }, 2600);
-        }
-      })
-      .catch((error) => {
-        toast.error("Ops, algo deu errado", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      });
+  async function formSubmit(data) {
+    await loginFetch(data);
   }
 
   return (

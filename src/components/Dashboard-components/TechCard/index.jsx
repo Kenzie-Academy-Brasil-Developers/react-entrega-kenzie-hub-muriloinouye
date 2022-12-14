@@ -1,28 +1,17 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { TechContext } from "../../../contexts/TechContext";
+import { UserContext } from "../../../contexts/UserContext";
 import { CardDiv, CardRightDiv } from "../../../styles";
-import styles from "./techCard.module.css";
 
-export const TechCard = ({ obj, token, fetchUser }) => {
-  axios.interceptors.request.use(
-    (config) => {
-      config.headers.authorization = `Bearer ${token}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+export const TechCard = ({ obj }) => {
+  const { fetchUser } = useContext(UserContext);
+  const { techRemove } = useContext(TechContext);
 
-  function removeTech() {
-    axios
-      .delete(`https://kenziehub.herokuapp.com/users/techs/${obj.id}`)
-      .then((response) => {
-        console.log(response);
-        fetchUser();
-      })
-      .catch((err) => console.log(err));
+  async function removeTech() {
+    await techRemove(obj.id);
+    await fetchUser();
   }
 
   return (

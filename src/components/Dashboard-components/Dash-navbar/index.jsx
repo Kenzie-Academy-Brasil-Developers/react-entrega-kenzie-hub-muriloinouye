@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../../contexts/UserContext";
 import { DashNavbarContainer, StyledDashNavbar } from "../../../styles";
-import styles from "./dashNavbar.module.css";
 
-export const DashNavbar = ({ user }) => {
+export const DashNavbar = () => {
+  const { user } = useContext(UserContext);
   return (
     <StyledDashNavbar>
       <DashNavbarContainer>
